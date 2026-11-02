@@ -12,6 +12,10 @@ vim.o.wrap = false
 vim.o.hlsearch = false
 vim.o.signcolumn = 'yes'
 
+-- Spellcheck
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
+
 -- Space as the leader key
 vim.g.mapleader = vim.keycode('<Space>')
 
