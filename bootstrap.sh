@@ -35,6 +35,9 @@ main_packages=(
 	stylua
 	shfmt
 )
+aur_packages=(
+	dockerfmt
+)
 linux_specific_packages=(
 	ghostty
 )
@@ -69,6 +72,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	elif [[ "$distro" == "Arch Linux" || "$distro" == "Manjaro" ]]; then
 		echo "pacman"
 		sudo pacman -Syu "${linux_specific_packages[@]}" "${main_packages[@]}"
+		paru -Syu "${aur_packages[@]}"
 
 	elif [[ "$distro" == "openSUSE" ]]; then
 		echo "zypper"
