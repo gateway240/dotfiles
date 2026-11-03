@@ -11,6 +11,9 @@ vim.o.ignorecase = true
 vim.o.wrap = false
 vim.o.hlsearch = false
 vim.o.signcolumn = "yes"
+-- local project configs
+vim.o.exrc = true
+vim.o.secure = true
 
 -- Spellcheck
 vim.opt.spelllang = "en_us"
@@ -54,10 +57,15 @@ require("conform").setup({
 	},
 })
 
+require("mini.icons").setup({})
 require("mini.snippets").setup({})
 require("mini.completion").setup({})
 
-require("mini.files").setup({})
+require("mini.files").setup({
+	options = {
+		use_as_default_explorer = true,
+	},
+})
 vim.keymap.set("n", "<leader>e", "<cmd>lua MiniFiles.open()<cr>", { desc = "File explorer" })
 
 require("mini.pick").setup({})
