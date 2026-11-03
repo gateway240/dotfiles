@@ -8,14 +8,13 @@ main_packages=(
 	neovim
 	tmux
 	screen
+)
+format_packages=(
+	dockerfmt
 	stylua
 	shfmt
 )
-aur_packages=(
-	dockerfmt
-)
 linux_specific_packages=(
-	ghostty
 	zsh
 )
 
@@ -77,8 +76,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 		echo "yum"
 	elif [[ "$distro" == "Arch Linux" || "$distro" == "Manjaro" ]]; then
 		echo "pacman"
-		sudo pacman -Syu "${linux_specific_packages[@]}" "${main_packages[@]}"
-		paru -Syu "${aur_packages[@]}"
+		sudo pacman -Syu "${main_packages[@]}" "${linux_specific_packages[@]}" ghostty
+		paru -Syu "${format_packages[@]}"
 
 	elif [[ "$distro" == "openSUSE" ]]; then
 		echo "zypper"
@@ -89,7 +88,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	install_homebrew_if_not_present
 	# Install specific dependencies
 	brew install --cask ghostty
-	brew install "${main_packages[@]}"
+	brew install "${main_packages[@]}" "${format_packages[@]}"
 
 elif [[ "$OSTYPE" == "cygwin" ]]; then
 	echo "Installing POSIX dependencies!"
