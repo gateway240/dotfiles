@@ -75,4 +75,4 @@ vim.keymap.set("n", "<leader>fh", "<cmd>Pick help<cr>", { desc = "Search help ta
 
 -- List of compatible language servers is here:
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-vim.lsp.enable({ "gopls", "rust_analyzer" })
+-- vim.lsp.enable({ "gopls", "rust_analyzer" })
