@@ -69,7 +69,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	echo -n "Default distro package manager: "
 	if [[ "$distro" == "Ubuntu" || "$distro" == "Debian" || "$distro" == "Linux Mint" ]]; then
 		echo "apt"
-	elif [[ "$distro" == "Fedora" || "$distro" == "Red Hat"* ]]; then
+	elif [[ "$distro" == "Fedora" || "$distro" == "Red Hat"* || "$distro" == "AlmaLinux" ]]; then
 		echo "dnf"
 		dnf install -y "${linux_specific_packages[@]}" "${main_packages[@]}"
 
