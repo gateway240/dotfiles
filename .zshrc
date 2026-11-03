@@ -23,4 +23,3 @@ zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
-alias config='/usr/bin/git --git-dir=/Users/alex/.dotfiles/ --work-tree=/Users/alex'
