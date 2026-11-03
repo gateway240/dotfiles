@@ -13,6 +13,7 @@ format_packages=(
 	dockerfmt
 	stylua
 	shfmt
+	lua-language-server
 )
 linux_specific_packages=(
 	zsh
