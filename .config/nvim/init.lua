@@ -29,6 +29,7 @@ vim.keymap.set({ "n", "x" }, "gp", '"+p', { desc = "Paste clipboard text" })
 -- Command shortcuts
 vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>q", "<cmd>quitall<cr>", { desc = "Exit vim" })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 
 vim.cmd.colorscheme("retrobox")
 
@@ -75,4 +76,4 @@ vim.keymap.set("n", "<leader>fh", "<cmd>Pick help<cr>", { desc = "Search help ta
 
 -- List of compatible language servers is here:
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
--- vim.lsp.enable({ "gopls", "rust_analyzer" })
+vim.lsp.enable({ "lua_ls" })

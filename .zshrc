@@ -23,3 +23,9 @@ zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
+# Alex custom commands
+matlab() {
+    LD_PRELOAD="$HOME/AlexDev/omarchy-customizations/matlabR2026a-archlinux-fix/matlab_fix.so:/usr/lib/libstdc++.so.6" \
+        command "$HOME/matlab/bin/matlab" "$@"
+}
+export PATH="$HOME/.local/bin:$PATH"
