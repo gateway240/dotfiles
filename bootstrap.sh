@@ -4,30 +4,6 @@
 # Setup the dotfiles
 REPO="https://github.com/gateway240/dotfiles.git"
 TARGET_DIR="$HOME/.dotfiles"
-conf() {
-	/usr/bin/git --git-dir="$TARGET_DIR" --work-tree="$HOME" "$@"
-}
-if [[ ! -d "$TARGET_DIR" ]]; then
-	git clone --bare "$REPO" "$TARGET_DIR"
-	conf config --local status.showUntrackedFiles no
-	conf checkout
-else
-	conf pull
-fi
-
-# Install platform specific tooling
-install_homebrew_if_not_present() {
-	echo "Checking for Homebrew installation"
-
-	if ! command -v brew >/dev/null 2>&1; then
-		echo "Homebrew not found. Installing..."
-		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	else
-		echo "Homebrew already installed! Updating..."
-		brew update
-	fi
-}
-
 main_packages=(
 	neovim
 	tmux
@@ -40,7 +16,36 @@ aur_packages=(
 )
 linux_specific_packages=(
 	ghostty
+	zsh
 )
+
+# Functions
+conf() {
+	/usr/bin/git --git-dir="$TARGET_DIR" --work-tree="$HOME" "$@"
+}
+
+install_homebrew_if_not_present() {
+	echo "Checking for Homebrew installation"
+
+	if ! command -v brew >/dev/null 2>&1; then
+		echo "Homebrew not found. Installing..."
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	else
+		echo "Homebrew already installed! Updating..."
+		brew update
+	fi
+}
+
+# Main script begins
+if [[ ! -d "$TARGET_DIR" ]]; then
+	git clone --bare "$REPO" "$TARGET_DIR"
+	conf config --local status.showUntrackedFiles no
+	conf checkout
+else
+	conf pull
+fi
+
+# Install packages
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	echo "Installing Linux dependencies!"
 	# Detect installed package managers
@@ -66,6 +71,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 		echo "apt"
 	elif [[ "$distro" == "Fedora" || "$distro" == "Red Hat"* ]]; then
 		echo "dnf"
+		dnf install -y "${linux_specific_packages[@]}" "${main_packages[@]}"
 
 	elif [[ "$distro" == "CentOS" ]]; then
 		echo "yum"
