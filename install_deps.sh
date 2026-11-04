@@ -61,8 +61,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 		dnf install -y "${linux_specific_packages[@]}" "${main_packages[@]}"
 		# Install modern nvim from tarball
 		curl -LO https://github.com/neovim/neovim-releases/releases/download/v0.12.5/nvim-linux-x86_64.tar.gz
-		sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-		sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+		tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+		ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
 
 	elif [[ "$distro" == "CentOS" ]]; then
 		echo "yum"
