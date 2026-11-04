@@ -28,4 +28,7 @@ matlab() {
     LD_PRELOAD="$HOME/AlexDev/omarchy-customizations/matlabR2026a-archlinux-fix/matlab_fix.so:/usr/lib/libstdc++.so.6" \
         command "$HOME/matlab/bin/matlab" "$@"
 }
+osc() {
+	command "$HOME/AlexDev/opensim-creator/build/Release-Linux-amd64/osc/osc" "$@"
+}
 export PATH="$HOME/.local/bin:$PATH"
